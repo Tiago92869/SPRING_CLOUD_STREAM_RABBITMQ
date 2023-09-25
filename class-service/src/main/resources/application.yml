@@ -22,6 +22,12 @@ spring:
     username: guest
     password: guest
 
+  cloud:
+    stream:
+      bindings:
+        schoolSender:
+          destination: schoolQueue
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

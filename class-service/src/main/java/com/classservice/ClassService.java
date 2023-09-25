@@ -14,13 +14,17 @@ public class ClassService {
 
     private final ClassRepository classRepository;
 
+    private final SenderService senderService;
+
     @Autowired
-    public ClassService(ClassRepository classRepository) {
+    public ClassService(ClassRepository classRepository, SenderService senderService) {
         this.classRepository = classRepository;
+        this.senderService = senderService;
     }
 
     public Page<ClassDto> findAllClasses(Pageable pageable) {
 
+        this.senderService.sendSchool();
         return this.classRepository.findAll(pageable).map(ClassMapper.INSTANCE::classToDto);
     }
 

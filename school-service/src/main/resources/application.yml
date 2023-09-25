@@ -22,6 +22,21 @@ spring:
     username: guest
     password: guest
 
+  cloud:
+    stream:
+      function:
+        definition: schoolReceiver
+      bindings:
+        schoolReceiver-in-0:
+          destination: schoolQueue
+          group: my-group
+          content-type: application/json
+      rabbit:
+        bindings:
+          schoolReceiver-in-0:
+            consumer:
+              auto-bind-dlq: true
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
