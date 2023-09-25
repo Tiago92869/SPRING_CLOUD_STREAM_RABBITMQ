@@ -30,29 +30,46 @@ public class SchoolService {
     @PostConstruct
     public void createClass() {
 
-        School school = new School(UUID.randomUUID(), "Harvard", 0);
+        if(this.schoolRepository.count()==0){
 
-        this.schoolRepository.save(school);
+            School school = new School(UUID.randomUUID(), "Harvard", 0);
+
+            this.schoolRepository.save(school);
+        }
     }
 
     public void addClass(){
 
-        List<School> schoolList = this.schoolRepository.findAll();
+        Optional<School> optionalSchool = this.schoolRepository.findByName("Harvard");
 
-        Integer currentNumber = schoolList.get(0).getClasses();
+        if(optionalSchool.isEmpty()){
 
-        schoolList.get(0).setClasses(currentNumber+1);
+            throw new NotFoundException("Could not find Harvard school");
+        }
+
+        Integer currentNumber = optionalSchool.get().getClasses();
+
+        optionalSchool.get().setClasses(currentNumber+1);
+
+        this.schoolRepository.save(optionalSchool.get());
     }
 
     public void subtractClass(){
 
-        List<School> schoolList = this.schoolRepository.findAll();
+        Optional<School> optionalSchool = this.schoolRepository.findByName("Harvard");
 
-        Integer currentNumber = schoolList.get(0).getClasses();
+        if(optionalSchool.isEmpty()){
+
+            throw new NotFoundException("Could not find Harvard school");
+        }
+
+        Integer currentNumber = optionalSchool.get().getClasses();
 
         if(currentNumber > 0){
 
-            schoolList.get(0).setClasses(currentNumber-1);
+            optionalSchool.get().setClasses(currentNumber-1);
         }
+
+        this.schoolRepository.save(optionalSchool.get());
     }
 }

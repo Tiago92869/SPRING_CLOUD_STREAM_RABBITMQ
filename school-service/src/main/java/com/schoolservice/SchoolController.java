@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Tag(name = "Class", description = "Manage classes")
+@Tag(name = "School", description = "Manage schools")
 @RestController
 public class SchoolController {
 

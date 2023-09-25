@@ -10,11 +10,9 @@ public class SenderService {
     @Autowired
     private StreamBridge streamBridge;
 
-    public void sendSchool(){
+    public void sendSchool(String action){
 
-        String hello  = "Hello";
-
-        streamBridge.send("schoolSender", hello);
+        streamBridge.send("schoolSender", action);
     }
 
 }
