@@ -24,7 +24,6 @@ public class ClassService {
 
     public Page<ClassDto> findAllClasses(Pageable pageable) {
 
-        this.senderService.sendSchool();
         return this.classRepository.findAll(pageable).map(ClassMapper.INSTANCE::classToDto);
     }
 
@@ -34,6 +33,7 @@ public class ClassService {
 
         Class c = ClassMapper.INSTANCE.dtoToClass(classDto);
 
+        this.senderService.sendSchool("add");
         return ClassMapper.INSTANCE.classToDto(this.classRepository.save(c));
     }
 
@@ -46,6 +46,7 @@ public class ClassService {
             throw new NotFoundException("There is no class with that id");
         }
 
+        this.senderService.sendSchool("remove");
         this.classRepository.deleteById(id);
     }
 }

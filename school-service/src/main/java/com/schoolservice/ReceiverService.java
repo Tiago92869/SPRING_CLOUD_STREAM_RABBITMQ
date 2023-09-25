@@ -20,8 +20,15 @@ public class ReceiverService {
     public Consumer<String> schoolReceiver(){
 
         return s -> {
-            System.out.println("FUNCIONA!!!");
+            System.out.println("FUNDAIDASDADS");
+            if(s.equals("add")){
+                System.out.println("2222");
+                this.schoolService.addClass();
+            }
+            else if(s.equals("remove")){
+                System.out.println("dddddddd");
+                this.schoolService.subtractClass();
+            }
         };
-
     }
 }
