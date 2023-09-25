@@ -1,4 +1,4 @@
-package com.rabbit.teste.appointmentservice.config;
+package com.schoolservice;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -16,7 +16,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI usersMicroserviceOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Class Service")
+                .info(new Info().title("School Service")
                         .version("1.0"));
     }
 
