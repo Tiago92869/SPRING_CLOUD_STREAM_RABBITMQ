@@ -1,0 +1,28 @@
+server:
+  port: 1111
+  servlet:
+    contextPath: /api/class
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:2324/classdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  rabbitmq:
+    host: localhost
+    port: 5670
+    username: guest
+    password: guest
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enable: true

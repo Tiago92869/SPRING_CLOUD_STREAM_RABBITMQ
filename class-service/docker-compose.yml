@@ -1,0 +1,21 @@
+version: "3.1"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgresR
+    ports:
+      - "2324:5432"
+    environment:
+      POSTGRES_DB: classdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmqR
+    ports:
+      - "5670:5672" # RabbitMQ default port
+      - "15670:15672" # RabbitMQ management interface
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
